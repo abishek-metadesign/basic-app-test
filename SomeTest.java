@@ -16,6 +16,9 @@ public class SomeTest {
     }
 
     @Test
+    @Tags({@Tag("position=senior"),
+            @Tag("points=3"),
+            @Tag("name=This_is_a_test")})
     public void  inCorrectTest(){
         Assertions.assertEquals(1,2);
     }
