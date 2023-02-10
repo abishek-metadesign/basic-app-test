@@ -1,27 +1,37 @@
 package com.sample.basicapp.external;
 
+import com.sample.basicapp.testprinter.Position;
+import com.sample.basicapp.testprinter.TestPrinter;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Tags;
 
 public class SomeTest {
 
-    @Test
-    @Tags({@Tag("position=senior"),
-            @Tag("points=3"),
-            @Tag("name=This_is_a_test")})
-    public void correctText(){
-        Assertions.assertEquals(1,1);
+    static TestPrinter testPrinter ;
+
+    @BeforeAll
+    public static void initAll(){
+        testPrinter = new TestPrinter();
     }
 
+
     @Test
-    @Tags({@Tag("position=senior"),
-            @Tag("points=3"),
-            @Tag("name=This_is_a_test")})
-    public void  inCorrectTest(){
-        Assertions.assertEquals(1,2);
+    public void correctText(){
+        testPrinter.print(()->{
+            Assertions.assertEquals(1,2);
+        },2, Position.JUNIOR);
     }
+
+
+    @Test
+    public void correctTest(){
+        testPrinter.print(()->{
+            Assertions.assertEquals(1,2);
+        },2, Position.JUNIOR);
+    }
+
+
 
 
 }
